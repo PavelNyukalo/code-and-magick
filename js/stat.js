@@ -21,10 +21,10 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-var renderText = function (ctx, text, x, y, color, font, textBaseline) {
-  ctx.fillStyle = color;
-  ctx.font = font;
-  ctx.textBaseline = textBaseline;
+var renderText = function (ctx, text, x, y) {
+  ctx.fillStyle = COLOR_TEXT;
+  ctx.font = FONT_TEXT;
+  ctx.textBaseline = TEXT_BASE_LINE;
   ctx.fillText(text, x, y);
 };
 
@@ -54,8 +54,8 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
   // Отрисовка заголовка
-  renderText(ctx, HEADING_TEXT_FIRST, CLOUD_X + TEXT_HEADING_GAP, CLOUD_Y + TEXT_HEADING_GAP, COLOR_TEXT, FONT_TEXT, TEXT_BASE_LINE);
-  renderText(ctx, HEADING_TEXT_SECOND, CLOUD_X + TEXT_HEADING_GAP, CLOUD_Y + (TEXT_HEADING_GAP * 2), COLOR_TEXT, FONT_TEXT, TEXT_BASE_LINE);
+  renderText(ctx, HEADING_TEXT_FIRST, CLOUD_X + TEXT_HEADING_GAP, CLOUD_Y + TEXT_HEADING_GAP);
+  renderText(ctx, HEADING_TEXT_SECOND, CLOUD_X + TEXT_HEADING_GAP, CLOUD_Y + (TEXT_HEADING_GAP * 2));
 
   var maxTime = getMaxNumber(times);
 
@@ -73,8 +73,8 @@ window.renderStatistics = function (ctx, names, times) {
       playerBarColor = 'rgba(255, 0, 0, 1)';
     }
 
-    renderText(ctx, playerTimeData, playerX, playerTimeY, COLOR_TEXT, FONT_TEXT, TEXT_BASE_LINE);
-    renderText(ctx, names[j], playerX, playerNameY, COLOR_TEXT, FONT_TEXT, TEXT_BASE_LINE);
+    renderText(ctx, playerTimeData, playerX, playerTimeY);
+    renderText(ctx, names[j], playerX, playerNameY);
     renderHistogram(ctx, playerX, playerBarY, BAR_WIDTH, playerBarHeight, playerBarColor);
   }
 };

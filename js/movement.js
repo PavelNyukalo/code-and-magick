@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-
-  var setupDialogElement = window.dialog.setup;
+  var setupDialogElement = document.querySelector('.setup');
   var dialogHandler = setupDialogElement.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (evt) {

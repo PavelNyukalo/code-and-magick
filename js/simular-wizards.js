@@ -1,32 +1,21 @@
 'use strict';
 
 (function () {
-  var similarListElement = window.dialog.setup.querySelector('.setup-similar-list');
+  var NUMBER_OF_WIZARDS = 4;
+
+  var setup = document.querySelector('.setup');
+  var similarListElement = setup.querySelector('.setup-similar-list');
 
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-  var generateData = function (num) {
-    var wizards = [];
-
-    for (var i = 0; i < num; i++) {
-      wizards.push({
-        name: window.util.getRandomItem(window.constants.WIZARD_NAMES) + ' ' + window.util.getRandomItem(window.constants.WIZARD_SURNAMES),
-        coatColor: window.util.getRandomItem(window.constants.WIZARD_COAT_COLORS),
-        eyesColor: window.util.getRandomItem(window.constants.WIZARD_EYES_COLORS)
-      });
-    }
-
-    return wizards;
-  };
-
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardElement;
   };
@@ -34,16 +23,17 @@
   var renderWizards = function (array) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < array.length; i++) {
+    for (var i = 0; i < NUMBER_OF_WIZARDS; i++) {
       fragment.appendChild(renderWizard(array[i]));
     }
 
     similarListElement.appendChild(fragment);
+
+    var character = document.querySelector('.setup-similar');
+    character.classList.remove('hidden');
   };
 
-  var data = generateData(window.constants.NUMBER_OF_WIZARDS);
-  renderWizards(data);
-
-  var character = document.querySelector('.setup-similar');
-  character.classList.remove('hidden');
+  window.simularWizards = {
+    render: renderWizards
+  };
 })();

@@ -22,7 +22,7 @@
 
   var renderWizards = function (array) {
     var fragment = document.createDocumentFragment();
-
+    similarListElement.innerHTML = '';
     for (var i = 0; i < NUMBER_OF_WIZARDS; i++) {
       fragment.appendChild(renderWizard(array[i]));
     }
@@ -33,7 +33,7 @@
     character.classList.remove('hidden');
   };
 
-  window.simularWizards = {
+  window.wizard = {
     render: renderWizards
   };
 })();

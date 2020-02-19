@@ -17,7 +17,7 @@
 
   var openSetup = function () {
     setup.classList.remove('hidden');
-    window.backend.load(window.simularWizards.render, window.backend.onError);
+    window.backend.load(window.simular.successHandler, window.backend.onError);
     document.addEventListener('keydown', onPopupEscPress);
   };
 

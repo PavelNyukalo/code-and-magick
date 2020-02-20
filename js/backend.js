@@ -1,17 +1,21 @@
 'use strict';
 
 (function () {
-  var URL_LOAD = 'https://js.dump.academy/code-and-magick/data';
-  var URL_SAVE = 'https://js.dump.academy/code-and-magick';
-  var SERVER_TIME = 10000;
-  var STATUS_OK = 200;
+  var Url = {
+    LOAD: 'https://js.dump.academy/code-and-magick/data',
+    SAVE: 'https://js.dump.academy/code-and-magick'
+  };
+  var Server = {
+    TIME: 10000,
+    STATUS_SUCCESS: 200
+  };
 
-  var toRequest = function (onSuccess, onError) {
+  var createXhr = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === STATUS_OK) {
+      if (xhr.status === Server.STATUS_SUCCESS) {
         onSuccess(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -25,20 +29,20 @@
       onError('Превышено время ожидания. Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
-    xhr.timeout = SERVER_TIME;
+    xhr.timeout = Server.TIME;
 
     return xhr;
   };
 
   var load = function (onSuccess, onError) {
-    var xhr = toRequest(onSuccess, onError);
-    xhr.open('GET', URL_LOAD);
+    var xhr = createXhr(onSuccess, onError);
+    xhr.open('GET', Url.LOAD);
     xhr.send();
   };
 
   var save = function (data, onSuccess, onError) {
-    var xhr = toRequest(onSuccess, onError);
-    xhr.open('POST', URL_SAVE);
+    var xhr = createXhr(onSuccess, onError);
+    xhr.open('POST', Url.SAVE);
     xhr.send(data);
   };
 

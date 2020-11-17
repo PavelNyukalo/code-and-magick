@@ -1,4 +1,4 @@
-# Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
+# Учебный проект «Код и Магия» [![Build Status](https://travis-ci.com/PavelNyukalo/code-and-magick.svg?branch=master)](https://travis-ci.com/PavelNyukalo/code-and-magick)
 
 * Студент: [Павел Нюкало](https://up.htmlacademy.ru/javascript/19/user/869225).
 * Наставник: [Дмитрий Рябинин](https://up.htmlacademy.ru/javascript/19/user/63289).
